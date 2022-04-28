@@ -30,17 +30,20 @@ namespace Random_Selector
         {
             timer1.Enabled = true;
             panel1.Visible = true ;
+            button1.BackColor = Color.DarkBlue;
 
         }
         public int a = 0;
+        public int number = 0;
         public string r;
         public int line;
         public int size;
         private void timer1_Tick(object sender, EventArgs e)
         {
             string[] lines = this.richTextBox1.Lines;
-            
-            if(richTextBox1.Text=="")
+            string[] lines2 = this.richTextBox3.Lines;
+
+            if (richTextBox1.Text==""|| richTextBox3.Text == "")
             {
                 timer1.Enabled = false;
                 MessageBox.Show("There is nothing to show");
@@ -48,7 +51,7 @@ namespace Random_Selector
             }
             else
             {
-               label1.Text = lines[new Random().Next(lines.Length)];
+               label1.Text = lines[new Random().Next(lines.Length)]+" : "+ lines2[new Random().Next(lines2.Length)];
             }
             
             if(WindowState==FormWindowState.Normal)
@@ -60,23 +63,27 @@ namespace Random_Selector
                 size = 65;
             }
 
+           
+
             if (timer1.Enabled == true)
             {
+                
                 a++;
                 textBox2.Text = a.ToString();
                 panel1.Size = new Size(size * a, 41);
                 if (a == 30)
                 {
+                    number = number + 1;
                     timer1.Enabled = false;
                     if(richTextBox2.Text=="")
                     {
-                        richTextBox2.Text = label1.Text;
+                        richTextBox2.Text = number+". "+label1.Text;
                     }
                     else
                     {
-                        richTextBox2.Text = richTextBox2.Text + "\n" + label1.Text;
+                        richTextBox2.Text = richTextBox2.Text + "\n" + number + ". " + label1.Text;
                     }
-                   
+                    button1.BackColor = Color.DeepSkyBlue;
                     panel1.Visible = false;
                     a = 0;  
                 }
@@ -106,6 +113,16 @@ namespace Random_Selector
                 richTextBox2.SaveFile(saveFile1.FileName, RichTextBoxStreamType.PlainText);
             }
 
+        }
+
+        private void button1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void button1_BackColorChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
