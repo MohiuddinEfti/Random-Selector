@@ -41,9 +41,9 @@ namespace Random_Selector
         private void timer1_Tick(object sender, EventArgs e)
         {
             string[] lines = this.richTextBox1.Lines;
-            string[] lines2 = this.richTextBox3.Lines;
+           
 
-            if (richTextBox1.Text==""|| richTextBox3.Text == "")
+            if (richTextBox1.Text=="")
             {
                 timer1.Enabled = false;
                 MessageBox.Show("There is nothing to show");
@@ -51,7 +51,7 @@ namespace Random_Selector
             }
             else
             {
-               label1.Text = lines[new Random().Next(lines.Length)]+" : "+ lines2[new Random().Next(lines2.Length)];
+               label1.Text = lines[new Random().Next(lines.Length)];
             }
             
             if(WindowState==FormWindowState.Normal)
